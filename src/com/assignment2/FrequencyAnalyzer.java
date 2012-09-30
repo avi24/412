@@ -321,7 +321,7 @@ public class FrequencyAnalyzer {
 	
 	private String[] makeSextagraphArray() {
 		
-		String[] strArrSextagramLetters = new String[chrArrLetters.length*chrArrLetters.length*chrArrLetters.length*chrArrLetters.length];
+		String[] strArrSextagramLetters = new String[chrArrLetters.length*chrArrLetters.length*chrArrLetters.length*chrArrLetters.length*chrArrLetters.length*chrArrLetters.length];
 		
 		// Make (26*26)*(26*26)x(26*26) sextagram array
 		int intIndexCount = 0;
