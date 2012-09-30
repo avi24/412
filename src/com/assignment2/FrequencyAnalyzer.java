@@ -9,7 +9,8 @@ public class FrequencyAnalyzer {
 	
 	FrequencyAnalyzer() {
 		this.makeAlphabetArray();
-				
+		this.setGraphValue(16);
+		this.setFilename("assig2-part2-playfair-"+this.getGraphValue()+"graph.txt");
 	}
 
 	public void printMostCommonLetter(String strCiphertext) {
@@ -230,18 +231,18 @@ public class FrequencyAnalyzer {
 		String[] strArrSextagramLetters = new String[chrArrLetters.length*chrArrLetters.length*chrArrLetters.length*chrArrLetters.length*chrArrLetters.length*chrArrLetters.length];
 		String[] strArrSextagraphCipher = new String[strCiphertext.length()/6];
 		
-		strArrSextagramLetters = this.makeSextagraphArray();
+//		strArrSextagramLetters = this.makeSextagraphArray();
 		strArrSextagraphCipher = this.makeCipherSextagraph(strCiphertext);
 				
-		intSextagraphFrequency = new int[chrArrLetters.length*chrArrLetters.length*chrArrLetters.length*chrArrLetters.length*chrArrLetters.length*chrArrLetters.length];
+		intSextagraphFrequency = new int[strCiphertext.length()/6];
 				
 //		for(int bi1=0;bi1<(chrArrLetters.length*chrArrLetters.length);bi1++) {
 //			System.out.println(bi1 + " : " + strArrBigramLetters[bi1]);
 //		}
 				
-		for(int j=0;j<strArrSextagramLetters.length;j++) {
+		for(int j=0;j<strArrSextagraphCipher.length;j++) {
 			for(int i=0;i<strArrSextagraphCipher.length;i++) {
-				if(strArrSextagramLetters[j].equals(strArrSextagraphCipher[i])) {
+				if(strArrSextagraphCipher[j].equals(strArrSextagraphCipher[i])) {
 					intSextagraphFrequency[j] = intSextagraphFrequency[j] + 1;
 				}
 			}
@@ -259,13 +260,102 @@ public class FrequencyAnalyzer {
 				
 		// Write to file bigram frequency chart
 		for(int k=0;k<intSextagraphFrequency.length;k++) {
-			out.write(intSextagraphFrequency[k] + "\t" + strArrSextagramLetters[k] + "\t" + 100*((double) intSextagraphFrequency[k] / (double)strArrSextagraphCipher.length) + "\n");
+			out.write(intSextagraphFrequency[k] + "\t" + strArrSextagraphCipher[k] + "\t" + 100*((double) intSextagraphFrequency[k] / (double)strArrSextagraphCipher.length) + "\n");
 		}
 		
 		//Close the output stream
 		out.close();
 	
 	}
+
+	public void printMostCommonOctagraph(String strCiphertext) throws IOException {		
+//		char[] chrArrCiphertext = strCiphertext.toCharArray();
+		int[] intOctagraphFrequency;
+		
+//		String[] strArrOctagramLetters = new String[chrArrLetters.length*chrArrLetters.length*chrArrLetters.length*chrArrLetters.length*chrArrLetters.length*chrArrLetters.length];
+		String[] strArrOctagraphCipher = new String[strCiphertext.length()/8];
+		
+//		strArrSextagramLetters = this.makeSextagraphArray();
+		strArrOctagraphCipher = this.makeCipherOctagraph(strCiphertext);
+				
+		intOctagraphFrequency = new int[strCiphertext.length()/8];
+				
+//		for(int bi1=0;bi1<(chrArrLetters.length*chrArrLetters.length);bi1++) {
+//			System.out.println(bi1 + " : " + strArrBigramLetters[bi1]);
+//		}
+				
+		for(int j=0;j<strArrOctagraphCipher.length;j++) {
+			for(int i=0;i<strArrOctagraphCipher.length;i++) {
+				if(strArrOctagraphCipher[j].equals(strArrOctagraphCipher[i])) {
+					intOctagraphFrequency[j] = intOctagraphFrequency[j] + 1;
+				}
+			}
+		}
+		
+//		// Display quadrigraph frequency chart
+//		for(int k=0;k<intQuadrigraphFrequency.length;k++) {
+//			System.out.println(intQuadrigraphFrequency[k] + "\t" + strArrQuadrigramLetters[k] + "\t" + 100*((double) intQuadrigraphFrequency[k] / (double)strArrQuadrigraphCipher.length));
+//		}
+		
+		// Write quadrigraph frequency chart to file -- too big to print
+		// Create file 
+		FileWriter fstream = new FileWriter("assig2-part2-playfair-octagraphs.txt");
+		BufferedWriter out = new BufferedWriter(fstream);
+				
+		// Write to file bigram frequency chart
+		for(int k=0;k<intOctagraphFrequency.length;k++) {
+			out.write(intOctagraphFrequency[k] + "\t" + strArrOctagraphCipher[k] + "\t" + 100*((double) intOctagraphFrequency[k] / (double)strArrOctagraphCipher.length) + "\n");
+		}
+		
+		//Close the output stream
+		out.close();
+	
+	}
+	
+	public void printMostCommonSubgraph(String strCiphertext) throws IOException {		
+//		char[] chrArrCiphertext = strCiphertext.toCharArray();
+		int[] intSubgraphFrequency;
+		
+//		String[] strArrOctagramLetters = new String[chrArrLetters.length*chrArrLetters.length*chrArrLetters.length*chrArrLetters.length*chrArrLetters.length*chrArrLetters.length];
+		String[] strArrSubgraphCipher = new String[strCiphertext.length()/intCipherGraphVal];
+		
+//		strArrSextagramLetters = this.makeSextagraphArray();
+		strArrSubgraphCipher = this.makeCipherSubgraph(strCiphertext);
+				
+		intSubgraphFrequency = new int[strCiphertext.length()/intCipherGraphVal];
+				
+//		for(int bi1=0;bi1<(chrArrLetters.length*chrArrLetters.length);bi1++) {
+//			System.out.println(bi1 + " : " + strArrBigramLetters[bi1]);
+//		}
+				
+		for(int j=0;j<strArrSubgraphCipher.length;j++) {
+			for(int i=0;i<strArrSubgraphCipher.length;i++) {
+				if(strArrSubgraphCipher[j].equals(strArrSubgraphCipher[i])) {
+					intSubgraphFrequency[j] = intSubgraphFrequency[j] + 1;
+				}
+			}
+		}
+		
+//		// Display quadrigraph frequency chart
+//		for(int k=0;k<intQuadrigraphFrequency.length;k++) {
+//			System.out.println(intQuadrigraphFrequency[k] + "\t" + strArrQuadrigramLetters[k] + "\t" + 100*((double) intQuadrigraphFrequency[k] / (double)strArrQuadrigraphCipher.length));
+//		}
+		
+		// Write quadrigraph frequency chart to file -- too big to print
+		// Create file 
+		FileWriter fstream = new FileWriter(strFilename);
+		BufferedWriter out = new BufferedWriter(fstream);
+				
+		// Write to file bigram frequency chart
+		for(int k=0;k<intSubgraphFrequency.length;k++) {
+			out.write(intSubgraphFrequency[k] + "\t" + strArrSubgraphCipher[k] + "\t" + 100*((double) intSubgraphFrequency[k] / (double)strArrSubgraphCipher.length) + "\n");
+		}
+		
+		//Close the output stream
+		out.close();
+	
+	}
+	
 	
 	private void makeAlphabetArray() {
 		//chrArrLetters = new char[26];
@@ -405,13 +495,87 @@ public class FrequencyAnalyzer {
 		
 		// Make cipher octagraph
 		for(int index=0;index<(chrArrCiphertext.length-7);index++) {
-			if(index % 6 == 0) {
-				strArrOctagraphCipher[index/6] = new StringBuilder().append(chrArrCiphertext[index]).append(chrArrCiphertext[index+1]).append(chrArrCiphertext[index+2]).append(chrArrCiphertext[index+3]).append(chrArrCiphertext[index+4]).append(chrArrCiphertext[index+5]).append(chrArrCiphertext[index+6]).append(chrArrCiphertext[index+7]).toString();
+			if(index % 8 == 0) {
+				strArrOctagraphCipher[index/8] = new StringBuilder().append(chrArrCiphertext[index]).append(chrArrCiphertext[index+1]).append(chrArrCiphertext[index+2]).append(chrArrCiphertext[index+3]).append(chrArrCiphertext[index+4]).append(chrArrCiphertext[index+5]).append(chrArrCiphertext[index+6]).append(chrArrCiphertext[index+7]).toString();
 			}
 		}
 		
 		return strArrOctagraphCipher;
 	}
 	
+	private String[] makeCipherSubgraph(String strCiphertext) {
+		// add intCipherGraphVal-1 appends in the main for loop
+		
+		strFilename = "assig2-part2-playfair-"+intCipherGraphVal+"graph.txt";
+		
+		char[] chrArrCiphertext = strCiphertext.toCharArray();
+		String[] strArrSubgraphCipher;
+		
+		strArrSubgraphCipher = new String[strCiphertext.length()/intCipherGraphVal]; // length/intCipherGraphVal because there are exactly n/intCipherGraphVal subgraphs for a text of n length
+		
+		// Make cipher intCipherGraphVal-graph
+		for(int index=0;index<(chrArrCiphertext.length-intCipherGraphVal+1);index++) {
+			if(index % intCipherGraphVal == 0) {
+				// ************************************
+				//
+				// add intCipherGraphVal-1 appends here
+				//
+				// ************************************
+				strArrSubgraphCipher[index/intCipherGraphVal] = new StringBuilder()
+						.append(chrArrCiphertext[index])
+						.append(chrArrCiphertext[index+1])
+						.append(chrArrCiphertext[index+2])
+						.append(chrArrCiphertext[index+3])
+						.append(chrArrCiphertext[index+4])
+						.append(chrArrCiphertext[index+5])
+						.append(chrArrCiphertext[index+6])
+						.append(chrArrCiphertext[index+7])
+						.append(chrArrCiphertext[index+8])
+						.append(chrArrCiphertext[index+9])
+						.append(chrArrCiphertext[index+10])
+						.append(chrArrCiphertext[index+11])
+						.append(chrArrCiphertext[index+12])
+						.append(chrArrCiphertext[index+13])
+						.append(chrArrCiphertext[index+14])
+						.append(chrArrCiphertext[index+15])
+						.toString();
+			}
+		}
+		
+		return strArrSubgraphCipher;
+	}
+	
+//	private String[] makeCipherSubgraph(String strCiphertext) {
+//		int intCipherGraphVal = 10;
+//		
+//		char[] chrArrCiphertext = strCiphertext.toCharArray();
+//		String[] strArrSubgraphCipher;
+//		
+//		strArrSubgraphCipher = new String[strCiphertext.length()/intCipherGraphVal]; // length/intCipherGraphVal because there are exactly n/intCipherGraphVal subgraphs for a text of n length
+//		
+//		// Make cipher intCipherGraphVal-graph
+//		for(int index=0;index<(chrArrCiphertext.length-intCipherGraphVal-1);index++) {
+//			if(index % intCipherGraphVal == 0) {
+//				strArrSubgraphCipher[index/intCipherGraphVal] = new StringBuilder().append(chrArrCiphertext[index]).append(chrArrCiphertext[index+1]).append(chrArrCiphertext[index+2]).append(chrArrCiphertext[index+3]).append(chrArrCiphertext[index+4]).append(chrArrCiphertext[index+5]).append(chrArrCiphertext[index+6]).append(chrArrCiphertext[index+7]).toString();
+//			}
+//		}
+//		
+//		return strArrSubgraphCipher;
+//	}
+	
+	public void setFilename(String strNewfilename) {
+		this.strFilename = strNewfilename;
+	}
+	
+	public void setGraphValue(int intNewGraphValue) {
+		this.intCipherGraphVal = intNewGraphValue;
+	}
+	
+	public int getGraphValue() {
+		return this.intCipherGraphVal;
+	}
+	
 	static char[] chrArrLetters = new char[26];
+	private String strFilename = new String();
+	private int intCipherGraphVal;
 }
