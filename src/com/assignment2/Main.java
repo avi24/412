@@ -4,7 +4,7 @@ import java.io.IOException;
 
 public class Main {
 	public static void main(String [ ] args) throws IOException {    
-		FrequencyAnalyzer objFreq = new FrequencyAnalyzer();
+		FrequencyAnalyzer objFreq = new FrequencyAnalyzer(2);
 		
 //		objFreq.printMostCommonLetter(strPlayfairCiphertext);
 //		objFreq.printMostCommonBigram(strMonoCiphertext);
@@ -13,6 +13,7 @@ public class Main {
 //		objFreq.printMostCommonQuadrigraph(strPlayfairCiphertext);
 //		objFreq.printMostCommonSextagraph(strPlayfairCiphertext);
 		objFreq.printMostCommonSubgraph(strPlayfairCiphertext);
+		objFreq.printMostCommonDuals(strPlayfairCiphertext);
 		
 //		int array[][]= {{1,3,5},{2,4,6}};
 //		System.out.println("Row size= " + array.length);
